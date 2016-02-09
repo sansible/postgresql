@@ -1,0 +1,17 @@
+---
+
+allow_duplicates: yes
+dependencies: [ ]
+
+galaxy_info:
+  author: Wojtek Oledzki
+  description: Install Postgresql server
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - precise
+        - trusty
+  categories:
+    - development

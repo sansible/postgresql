@@ -1,0 +1,30 @@
+---
+
+- name: Test Postgresql role
+  hosts: all
+
+  pre_tasks:
+    - name: Update apt
+      become: yes
+      apt:
+        cache_valid_time: 1800
+        update_cache: yes
+      tags:
+        - build
+
+  roles:
+    - role: sansible.postgresql
+
+  post_tasks:
+    - name: Postgresql should be installed
+      command: psql --version
+      register: postgresql_version
+      tags:
+        - assert
+
+    - name: Assert Postgresql version
+      assert:
+        that:
+          - postgresql_version.stdout == 'psql (PostgreSQL) 9.5.0'
+      tags:
+        - assert

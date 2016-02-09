@@ -1,0 +1,21 @@
+---
+
+- name: Make sure we have the postgresql apt repo installed
+  become: yes
+  apt_repository:
+    repo: deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
+    state: present
+
+- name: Install the postgresql apt repo key
+  become: yes
+  apt_key:
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    state: present
+
+- name: Install postgresql
+  become: yes
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - "postgresql-{{ postgresql.version }}"
+    - "postgresql-contrib-{{ postgresql.version }}"

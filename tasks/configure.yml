@@ -1,0 +1,21 @@
+---
+
+- name: Make sure the requested locale exists on the server
+  become: yes
+  locale_gen:
+    name: "{{ postgresql.locale }}"
+    state: present
+
+- name: Copy configuration templates
+  become: yes
+  template:
+    src: postgresql.conf.j2
+    dest: "/etc/postgresql/{{ postgresql.version }}/main/postgresql.conf"
+  notify: reload postgres
+
+- name: Copy pg_hba.conf
+  become: yes
+  template:
+    src: pg_hba.conf.j2
+    dest: "/etc/postgresql/{{ postgresql.version }}/main/pg_hba.conf"
+  notify: restart postgres
