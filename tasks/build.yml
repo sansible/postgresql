@@ -13,10 +13,11 @@
     state: present
     update_cache: yes
 
-- name: Install postgresql
+- name: Install postgresql & dependencies
   become: yes
   apt:
     name: "{{ item }}"
   with_items:
     - "postgresql-{{ postgresql.version }}"
     - "postgresql-contrib-{{ postgresql.version }}"
+    - python-psycopg2
