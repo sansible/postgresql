@@ -18,6 +18,7 @@ before_install:
   # Make sure everything's up to date.
   - sudo apt-get update -qq
   - sudo /etc/init.d/postgresql stop
+  - sudo apt-get purge -y "postgresql-*"
 
 install:
   # Install Ansible.

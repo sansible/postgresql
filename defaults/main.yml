@@ -8,3 +8,5 @@ postgresql:
   ssl: true
   timezone: "UTC"
   version: 9.5
+  root_user: root
+  root_password: P4ssw0rd!123
