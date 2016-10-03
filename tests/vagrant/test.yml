@@ -24,8 +24,7 @@
 
     - name: Assert Postgresql version
       assert:
-        that:
-          - postgresql_version.stdout == 'psql (PostgreSQL) 9.5.1'
+        that: "'psql (PostgreSQL) 9.5' in postgresql_version.stdout"
       tags:
         - assert
 
