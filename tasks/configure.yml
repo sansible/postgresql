@@ -21,7 +21,7 @@
   notify: restart postgres
 
 - name: Ensure postgresql is running
-  sudo: yes
+  become: yes
   service:
     enabled: yes
     name: postgresql
