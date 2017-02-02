@@ -4,7 +4,8 @@ allow_duplicates: yes
 dependencies: [ ]
 
 galaxy_info:
-  author: Wojtek Oledzki
+  author:
+    - Wojtek Oledzki
   description: Install Postgresql server
   license: MIT
   min_ansible_version: 1.9
@@ -13,5 +14,6 @@ galaxy_info:
       versions:
         - precise
         - trusty
+        - xenial
   categories:
     - development
