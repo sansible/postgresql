@@ -71,3 +71,31 @@ To simply install Postgresql server:
   roles:
     - role: sansible.postgresql
 ```
+
+To simply install Postgresql and allow all connections.
+
+```YAML
+- name: Install Postgresql
+  hosts: sandbox
+
+  pre_tasks:
+    - name: Update apt
+      become: yes
+      apt:
+        cache_valid_time: 1800
+        update_cache: yes
+      tags:
+        - build
+
+  roles:
+    - role: sansible.postgresql
+      postgresql:
+        config:
+          listen_addresses: "*"
+        hba_conf:
+          - type: local
+            user: postgres
+            auth_method: trust
+          - type: host
+            address: "0.0.0.0/0"
+```

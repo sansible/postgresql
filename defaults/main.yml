@@ -1,12 +1,36 @@
 ---
 postgresql:
-  data_directory: "/var/lib/postgresql/9.5/main"
-  locale: "en_GB.UTF-8"
-  max_connections: 100
-  port: 5432
-  shared_buffers: 128MB
-  ssl: true
-  timezone: "UTC"
-  version: 9.5
-  root_user: root
+  listen_addresse: 127.0.0.1
+  locale: en_GB.UTF-8
   root_password: P4ssw0rd!123
+  root_user: root
+  ssl: true
+  version: 9.5
+
+  config:
+    data_directory: /var/lib/postgresql/9.5/main
+    # change to * to bind to 0.0.0.0
+    listen_addresses: 127.0.0.1
+    max_connections: 100
+    port: 5432
+    # defaults to 20%
+    shared_buffers: "{{ (ansible_memtotal_mb / 5) | int }}"
+    timezone: UTC
+
+  # The defaults:
+  # TYPE  DATABASE USER     ADDRESS      METHOD
+  # local all      postgres              trust
+  # host  all      all      127.0.0.1/32 md5
+  #
+  # - type: local|host
+  #   user: postgresql user - defaults to "all"
+  #   database: database name - defaults to "all"
+  #   address: address - defaults to ""
+  #   auth_method: auth metod - defaults to "md5"
+  #   auth_options: additional auth option - defaults to ""
+  hba_conf:
+    - type: local
+      user: postgres
+      auth_method: trust
+    - type: host
+      address: 127.0.0.1/32
