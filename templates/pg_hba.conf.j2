@@ -1,6 +1,6 @@
 ##
 # {{ ansible_managed }}
 
-{% for client in postgresql.hba_conf %}
+{% for client in sansible_postgresql_hba_conf %}
 {{ client.type }} {{ client.database | default('all') }} {{ client.user | default('all') }} {{ client.address | default('') }} {{ client.auth_method | default('md5') }} {{ client.auth_options | default('') }}
 {% endfor %}

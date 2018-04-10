@@ -18,6 +18,6 @@
   apt:
     name: "{{ item }}"
   with_items:
-    - "postgresql-{{ postgresql.version }}"
-    - "postgresql-contrib-{{ postgresql.version }}"
+    - "postgresql-{{ sansible_postgresql_version }}"
+    - "postgresql-contrib-{{ sansible_postgresql_version }}"
     - python-psycopg2

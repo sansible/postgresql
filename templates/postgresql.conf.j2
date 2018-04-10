@@ -2,24 +2,30 @@
 # {{ ansible_managed }}
 
 {#
-	All config from `postgresql.config`
+	All config from `sansible_postgresql_config`
 #}
-{% for key, value in postgresql.config.iteritems() %}
+{% for key, value in sansible_postgresql_config.iteritems() %}
 {{ key }} = '{{ value }}'
 {% endfor %}
+data_directory = '{{ sansible_postgresql_data_directory }}'
+listen_addresses = '{{ sansible_postgresql_listen_addresses }}'
+max_connections = '{{ sansible_postgresql_max_connections }}'
+port = '{{ sansible_postgresql_port }}'
+shared_buffers = '{{ sansible_postgresql_shared_buffers }}'
+timezone = '{{ sansible_postgresql_timezone }}'
 
-hba_file = '/etc/postgresql/{{ postgresql.version }}/main/pg_hba.conf'
-ident_file = '/etc/postgresql/{{ postgresql.version }}/main/pg_ident.conf'
-external_pid_file = '/var/run/postgresql/{{ postgresql.version }}-main.pid'
+hba_file = '/etc/postgresql/{{ sansible_postgresql_version }}/main/pg_hba.conf'
+ident_file = '/etc/postgresql/{{ sansible_postgresql_version }}/main/pg_ident.conf'
+external_pid_file = '/var/run/postgresql/{{ sansible_postgresql_version }}-main.pid'
 unix_socket_directories = '/var/run/postgresql'
 
 {#
 	SSL
 #}
-ssl = {{ postgresql.ssl }}
-{% if postgresql.ssl == true %}
-ssl_cert_file = '/etc/ssl/certs/ssl-cert-snakeoil.pem'
-ssl_key_file = '/etc/ssl/private/ssl-cert-snakeoil.key'
+ssl = {{ sansible_postgresql_enable_ssl }}
+{% if sansible_postgresql_enable_ssl == true %}
+ssl_cert_file = '{{ sansible_postgresql_ssl_cert_file }}'
+ssl_key_file = '{{ sansible_postgresql_ssl_key_file }}'
 {% endif %}
 
 log_line_prefix = '%t '
@@ -34,9 +40,9 @@ datestyle = 'iso, dmy'
 	* number formatting
 	* time formatting
 #}
-lc_messages = '{{ postgresql.locale }}'
-lc_monetary = '{{ postgresql.locale }}'
-lc_numeric = '{{ postgresql.locale }}'
-lc_time = '{{ postgresql.locale }}'
+lc_messages = '{{ sansible_postgresql_locale }}'
+lc_monetary = '{{ sansible_postgresql_locale }}'
+lc_numeric = '{{ sansible_postgresql_locale }}'
+lc_time = '{{ sansible_postgresql_locale }}'
 
 default_text_search_config = 'pg_catalog.english'
