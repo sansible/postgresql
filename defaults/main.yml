@@ -1,36 +1,34 @@
 ---
-postgresql:
-  listen_addresse: 127.0.0.1
-  locale: en_GB.UTF-8
-  root_password: P4ssw0rd!123
-  root_user: root
-  ssl: true
-  version: 9.5
 
-  config:
-    data_directory: /var/lib/postgresql/9.5/main
-    # change to * to bind to 0.0.0.0
-    listen_addresses: 127.0.0.1
-    max_connections: 100
-    port: 5432
-    # defaults to 20%
-    shared_buffers: "{{ (ansible_memtotal_mb / 5) | int }}"
-    timezone: UTC
-
-  # The defaults:
-  # TYPE  DATABASE USER     ADDRESS      METHOD
-  # local all      postgres              trust
-  # host  all      all      127.0.0.1/32 md5
-  #
-  # - type: local|host
-  #   user: postgresql user - defaults to "all"
-  #   database: database name - defaults to "all"
-  #   address: address - defaults to ""
-  #   auth_method: auth metod - defaults to "md5"
-  #   auth_options: additional auth option - defaults to ""
-  hba_conf:
-    - type: local
-      user: postgres
-      auth_method: trust
-    - type: host
-      address: 127.0.0.1/32
+sansible_postgresql_autostart: yes  # disabling this skips user creation
+sansible_postgresql_config: {}
+sansible_postgresql_data_directory: /var/lib/postgresql/9.5/main
+sansible_postgresql_enable_ssl: yes
+# The defaults:
+# TYPE  DATABASE USER     ADDRESS      METHOD
+# local all      postgres              trust
+# host  all      all      127.0.0.1/32 md5
+#
+# - type: local|host
+#   user: postgresql user - defaults to "all"
+#   database: database name - defaults to "all"
+#   address: address - defaults to ""
+#   auth_method: auth metod - defaults to "md5"
+#   auth_options: additional auth option - defaults to ""
+sansible_postgresql_hba_conf:
+  - type: local
+    user: postgres
+    auth_method: trust
+  - type: host
+    address: 127.0.0.1/32
+sansible_postgresql_listen_addresses: 127.0.0.1
+sansible_postgresql_locale: en_GB.UTF-8
+sansible_postgresql_max_connections: 100
+sansible_postgresql_port: 5432
+sansible_postgresql_root_password: P4ssw0rd!123
+sansible_postgresql_root_user: root
+sansible_postgresql_shared_buffers: "{{ (ansible_memtotal_mb / 5) | int }}"
+sansible_postgresql_ssl_cert_file: /etc/ssl/certs/ssl-cert-snakeoil.pem
+sansible_postgresql_ssl_key_file: /etc/ssl/private/ssl-cert-snakeoil.key
+sansible_postgresql_timezone: UTC
+sansible_postgresql_version: 9.5
