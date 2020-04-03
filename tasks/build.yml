@@ -16,8 +16,7 @@
 - name: Install postgresql & dependencies
   become: yes
   apt:
-    name: "{{ item }}"
-  with_items:
-    - "postgresql-{{ sansible_postgresql_version }}"
-    - "postgresql-contrib-{{ sansible_postgresql_version }}"
-    - python-psycopg2
+    name:
+      - "postgresql-{{ sansible_postgresql_version }}"
+      - "postgresql-contrib-{{ sansible_postgresql_version }}"
+      - python-psycopg2
