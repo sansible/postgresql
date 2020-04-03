@@ -4,7 +4,10 @@ allow_duplicates: yes
 dependencies: []
 
 galaxy_info:
+  author: sansible
   description: Install Postgresql Server
+  galaxy_tags:
+    - development
   license: MIT
   min_ansible_version: 2.2
   platforms:
@@ -13,5 +16,3 @@ galaxy_info:
         - trusty
         - xenial
         - bionic
-  categories:
-    - development

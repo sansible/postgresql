@@ -4,7 +4,7 @@
 {#
 	All config from `sansible_postgresql_config`
 #}
-{% for key, value in sansible_postgresql_config.iteritems() %}
+{% for key, value in sansible_postgresql_config.items() %}
 {{ key }} = '{{ value }}'
 {% endfor %}
 data_directory = '{{ sansible_postgresql_data_directory }}'

@@ -36,6 +36,7 @@
     password: "{{ sansible_postgresql_root_password }}"
     role_attr_flags: "SUPERUSER,CREATEROLE,CREATEDB,INHERIT,login"
     state: present
+  no_log: yes
   when: sansible_postgresql_autostart
 
 - name: Ensure postgresql is Stopped and Disabled
